@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./output.css">
-    <link rel="shortcut icon" href="../../public/picture/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="./noscroll.css">
+    <link rel="stylesheet" href="./output.css"> <!-- add tailwind css -->
+    <link rel="shortcut icon" href="../../public/picture/logo.png" type="image/x-icon"> <!-- logo for navicon -->
+    <link rel="stylesheet" href="animate-spin2.css"> <!-- animation for logo in Bottom Navigation -->
     <title>Document</title>
 </head>
 
@@ -762,8 +762,7 @@
     <!-- footer -->
     <div class="h-32 w-full"></div>
     <!--------------- Bottom Navigation ----------------->
-    <div
-        class="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 dark:bg-gray-700 dark:border-gray-600">
+    <div class="fixed z-50 w-[calc(100%-0.5rem)] h-12 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-1 left-1/2 dark:bg-gray-700 dark:border-gray-600">
         <div class="grid h-full max-w-lg grid-cols-5 mx-auto">
             <button data-tooltip-target="tooltip-home" type="button"
                 class="inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
@@ -794,16 +793,35 @@
                 Explore
                 <div class="tooltip-arrow" data-popper-arrow></div>
             </div>
-            <div class="flex items-center justify-center">
-                <button data-tooltip-target="tooltip-new" type="button"
-                    class="inline-flex items-center justify-center w-10 h-10 font-medium bg-blue-600 rounded-full hover:bg-blue-700 group focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
-                    <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 18 18">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 1v16M1 9h16" />
-                    </svg>
-                    <span class="sr-only">New item</span>
-                </button>
+            <div data-tooltip-target="tooltip-new" class="flex items-center justify-center">
+                <img src="../../public/picture/logo.png" id="logo"
+                    class="w-10 h-10 rounded-full cursor-pointer bg-white"
+                    onclick="this.classList.toggle('animate-spin2') ;document.getElementById('newItem&Chat').classList.toggle('hidden');">
+                <!-- document.documentElement.classList.toggle('dark'); -->
+            </div>
+            <div id="newItem&Chat" class="hidden absolute bottom-12 left-[50%] -translate-x-1/2">
+                <div class="flex flex-col items-center justify-around bg-gray-700 w-10 h-[5.3rem] rounded-t-2xl">
+                    <button data-tooltip-target="tooltip-new" type="button"
+                        class="inline-flex items-center justify-center w-9 h-9 font-medium bg-blue-600 rounded-full hover:bg-blue-700 group focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
+                        <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 18 18">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 1v16M1 9h16" />
+                        </svg>
+                        <span class="sr-only">New item</span>
+                    </button>
+                    <button data-tooltip-target="Chat" type="button"
+                        class="inline-flex items-center justify-center w-9 h-9 font-medium bg-blue-600 rounded-full hover:bg-blue-700 group focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 text-white">
+                            <path d="M8 10.5H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                            <path d="M8 14H13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                            <path
+                                d="M17 3.33782C15.5291 2.48697 13.8214 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22C17.5228 22 22 17.5228 22 12C22 10.1786 21.513 8.47087 20.6622 7"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                        </svg>
+                        <span class="sr-only">chat</span>
+                    </button>
+                </div>
             </div>
             <div id="tooltip-new" role="tooltip"
                 class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -864,8 +882,6 @@
         </div>
     </div>
 
-    <!--------------- java scripts ----------------->
-    <script src="../../path/to/flowbite/dist/flowbite.min.js"></script>
 </body>
 
 </html>

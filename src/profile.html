@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./output.css">
-    <link rel="shortcut icon" href="../../public/picture/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="./noscroll.css">
+    <link rel="stylesheet" href="./output.css"> <!-- add tailwind css -->
+    <link rel="shortcut icon" href="../../public/picture/logo.png" type="image/x-icon"> <!-- logo for navicon -->
+    <link rel="stylesheet" href="animate-spin2.css"> <!-- animation for logo in Bottom Navigation -->
     <title>Document</title>
 </head>
 
@@ -25,17 +25,17 @@
                 <div class="w-24 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
             </div>
         </div>
+        <!-- botton edit & setting -->
         <div class="flex items-center justify-center">
-            <!-- edit botton avatar -->
+            <!-- botton edit profile -->
             <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
                 class="block h-fit text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 text-nowrap m-1"
                 type="button" onclick="document.getElementById('crud-modal').classList.remove('hidden')">
                 Edit Profile
             </button>
-            <!-- setting -->
-            <!-- setting botton in size sm> -->
+            <!-- botton setting -->
             <button data-modal-target="select-modal" data-modal-toggle="select-modal"
-                class="block sm:hidden h-fit text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-2.5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 m-1"
+                class=" h-fit text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-2.5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 m-1"
                 onclick="document.getElementById('setting-sm').classList.remove('hidden')" type="button">
                 <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                     width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -44,27 +44,16 @@
                         clip-rule="evenodd" />
                 </svg>
             </button>
-            <!-- Support & More Info botton in size grater of sm -->
-            <button data-modal-target="select-modal" data-modal-toggle="select-modal"
-                class="hidden sm:block h-fit text-xs text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-2.5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 m-1"
-                onclick="document.getElementById('more-info').classList.remove('hidden')" type="button">
-                Support & More Info
-            </button>
-            <!-- Logout botton in size grater of sm -->
-            <button data-modal-target="select-modal" data-modal-toggle="select-modal"
-                class="hidden sm:block h-fit text-xs text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-2.5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 m-1"
-                onclick="document.getElementById('popup-logout').classList.remove('hidden')" type="button">
-                Logout
-            </button>
+
         </div>
     </div>
 
     <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
 
-    <!-- Main edit -->
+    <!-- Main edit profile -->
     <div id="crud-modal" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative p-4 w-full max-w-md max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full mx-auto">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <!-- Modal header -->
@@ -128,10 +117,10 @@
         </div>
     </div>
 
-    <!-- Main setting in size sm -->
+    <!-- Main setting -->
     <div id="setting-sm" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative p-4 w-full max-w-md max-h-full">
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full ">
+        <div class="relative p-4 w-full max-w-md max-h-full mx-auto">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <!-- Modal header -->
@@ -139,6 +128,7 @@
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                         Setting
                     </h3>
+                    <!-- close setting -->
                     <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                         onclick="document.getElementById('setting-sm').classList.add('hidden')" type="button"
@@ -154,6 +144,20 @@
                 <!-- Modal body -->
                 <div class="p-4 md:p-5">
                     <ul class="space-y-4 mb-4">
+                        <!-- dark-light Mode -->
+                        <li>
+                            <label
+                                class="inline-flex items-center justify-between w-full p-5 text-gray-900 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-500 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-900 hover:bg-gray-100 dark:text-white dark:bg-gray-600 dark:hover:bg-gray-500">
+                                <div class="block">
+                                    <div class="w-full text-lg font-semibold">Dark/Light Mode</div>
+                                </div>
+                                <input type="checkbox" class="sr-only peer"
+                                    onchange="document.documentElement.classList.toggle('dark')">
+                                <div
+                                    class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                </div>
+                        </li>
+                        <!-- more info button -->
                         <li>
                             <input type="radio" id="job-1" name="job" value="job-1" class="hidden peer" required
                                 onclick="document.getElementById('more-info').classList.remove('hidden')" />
@@ -298,7 +302,7 @@
         </div>
     </div>
 
-    <!-- tabs -->
+    <!-- tabs posts and Release -->
     <div>
         <!-- button tab -->
         <div class="mb-4 border-gray-200 dark:border-gray-700">
@@ -1006,8 +1010,7 @@
     <!-- footer -->
     <div class="h-32 w-full"></div>
     <!--------------- Bottom Navigation ----------------->
-    <div
-        class="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 dark:bg-gray-700 dark:border-gray-600">
+    <div class="fixed z-50 w-[calc(100%-0.5rem)] h-12 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-1 left-1/2 dark:bg-gray-700 dark:border-gray-600">
         <div class="grid h-full max-w-lg grid-cols-5 mx-auto">
             <button data-tooltip-target="tooltip-home" type="button"
                 class="inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
@@ -1038,16 +1041,35 @@
                 Explore
                 <div class="tooltip-arrow" data-popper-arrow></div>
             </div>
-            <div class="flex items-center justify-center">
-                <button data-tooltip-target="tooltip-new" type="button"
-                    class="inline-flex items-center justify-center w-10 h-10 font-medium bg-blue-600 rounded-full hover:bg-blue-700 group focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
-                    <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 18 18">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 1v16M1 9h16" />
-                    </svg>
-                    <span class="sr-only">New item</span>
-                </button>
+            <div data-tooltip-target="tooltip-new" class="flex items-center justify-center">
+                <img src="../../public/picture/logo.png" id="logo"
+                    class="w-10 h-10 rounded-full cursor-pointer bg-white"
+                    onclick="this.classList.toggle('animate-spin2') ;document.getElementById('newItem&Chat').classList.toggle('hidden');">
+                <!-- document.documentElement.classList.toggle('dark'); -->
+            </div>
+            <div id="newItem&Chat" class="hidden absolute bottom-12 left-[50%] -translate-x-1/2">
+                <div class="flex flex-col items-center justify-around bg-gray-700 w-10 h-[5.3rem] rounded-t-2xl">
+                    <button data-tooltip-target="tooltip-new" type="button"
+                        class="inline-flex items-center justify-center w-9 h-9 font-medium bg-blue-600 rounded-full hover:bg-blue-700 group focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
+                        <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 18 18">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 1v16M1 9h16" />
+                        </svg>
+                        <span class="sr-only">New item</span>
+                    </button>
+                    <button data-tooltip-target="Chat" type="button"
+                        class="inline-flex items-center justify-center w-9 h-9 font-medium bg-blue-600 rounded-full hover:bg-blue-700 group focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 text-white">
+                            <path d="M8 10.5H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                            <path d="M8 14H13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                            <path
+                                d="M17 3.33782C15.5291 2.48697 13.8214 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22C17.5228 22 22 17.5228 22 12C22 10.1786 21.513 8.47087 20.6622 7"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                        </svg>
+                        <span class="sr-only">chat</span>
+                    </button>
+                </div>
             </div>
             <div id="tooltip-new" role="tooltip"
                 class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -1108,8 +1130,7 @@
         </div>
     </div>
 
-    <!--------------- java scripts ----------------->
-    <script src="../../path/to/flowbite/dist/flowbite.min.js"></script>
+
 </body>
 
 </html>

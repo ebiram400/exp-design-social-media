@@ -1,0 +1,6 @@
+.mask-howling{
+    mask-image: url("../public/svg/howling.svg");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+}
