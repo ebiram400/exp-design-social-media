@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="./output.css">
+		<title>Howling | شبکه اجتماعی گرگ</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: system-ui, -apple-system, sans-serif;
+			}
+
+			.auth-container {
+				min-height: 100vh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: linear-gradient(45deg, #1a1f35, #2a3a6a);
+				overflow: hidden;
+				position: relative;
+			}
+
+			/* انیمیشن پس‌زمینه */
+			.stars {
+				position: fixed;
+				width: 3px;
+				height: 3px;
+				background: white;
+				box-shadow: 0 0 3px #fff;
+				border-radius: 50%;
+				animation: starAnimation 4s linear infinite;
+			}
+
+			@keyframes starAnimation {
+				0% {
+					transform: translateY(0) scale(0);
+					opacity: 0;
+				}
+				50% {
+					opacity: 1;
+				}
+				100% {
+					transform: translateY(-100vh) scale(1);
+					opacity: 0;
+				}
+			}
+
+			/* کارت اصلی */
+			.auth-card {
+				background: rgba(255, 255, 255, 0.1);
+				backdrop-filter: blur(10px);
+				border-radius: 20px;
+				padding: 3rem;
+				width: 90%;
+				max-width: 450px;
+				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				position: relative;
+				z-index: 1;
+				margin-top: 1rem;
+				margin-bottom: 1rem;
+			}
+
+			/* انیمیشن گرگ */
+			.wolf-container {
+				margin-left: auto;
+				margin-right: auto;
+				margin-bottom: 1rem;
+				position: relative;
+				border-radius: 100%;
+				box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+			}
+
+			/* فرم‌ها */
+			.auth-input {
+				width: 100%;
+				padding: 1rem;
+				margin-bottom: 1.5rem;
+				background: rgba(255, 255, 255, 0.1);
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				border-radius: 12px;
+				color: white;
+				font-size: 1rem;
+				transition: all 0.3s ease;
+			}
+
+			.auth-input:focus {
+				outline: none;
+				border-color: #4A6FFF;
+				box-shadow: 0 0 15px rgba(74, 111, 255, 0.3);
+			}
+
+			.auth-input::placeholder {
+				color: rgba(255, 255, 255, 0.6);
+			}
+
+			.auth-button {
+				width: 100%;
+				padding: 1rem;
+				border: none;
+				border-radius: 12px;
+				background: linear-gradient(45deg, #4A6FFF, #6B46C1);
+				color: white;
+				font-weight: bold;
+				font-size: 1.1rem;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.auth-button::before {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 0;
+				height: 0;
+				background: rgba(255, 255, 255, 0.2);
+				border-radius: 50%;
+				transform: translate(-50%, -50%);
+				transition: width 0.6s, height 0.6s;
+			}
+
+			.auth-button:hover::before {
+				width: 300px;
+				height: 300px;
+			}
+
+			/* انیمیشن ورودی */
+			@keyframes fadeIn {
+				from {
+					opacity: 0;
+					transform: translateY(20px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			.auth-card {
+				animation: fadeIn 1s ease-out;
+			}
+
+			.profile-upload {
+				width: 120px;
+				height: 120px;
+				border-radius: 50%;
+				border: 2px dashed rgba(255, 255, 255, 0.3);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				overflow: hidden;
+				margin: 0 auto 1.5rem;
+			}
+
+			.profile-upload img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+			.date-picker {
+				background: rgba(255, 255, 255, 0.1);
+				color: white;
+				border: 1px solid rgba(255, 255, 255, 0.2);
+			}
+
+			.gender-select {
+				display: flex;
+				gap: 1rem;
+				margin-bottom: 1.5rem;
+			}
+
+			.gender-option {
+				flex: 1;
+				padding: 0.5rem;
+				text-align: center;
+				background: rgba(255, 255, 255, 0.1);
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				border-radius: 8px;
+				color: white;
+				cursor: pointer;
+				transition: all 0.3s ease;
+			}
+
+			.gender-option.selected {
+				background: rgba(74, 111, 255, 0.3);
+				border-color: #4A6FFF;
+			}
+
+			/* استایل برای بیوگرافی */
+			.bio-field {
+				background: rgba(255, 255, 255, 0.1);
+				border-radius: 12px;
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				padding: 1rem;
+				color: white;
+				min-height: 120px;
+				transition: all 0.3s ease;
+				width: 100%;
+				resize: vertical;
+				font-size: 0.95rem;
+				line-height: 1.5;
+				margin-bottom: 1.5rem;
+			}
+
+			.bio-field:focus {
+				outline: none;
+				border-color: #4A6FFF;
+				box-shadow: 0 0 15px rgba(74, 111, 255, 0.3);
+			}
+
+			.bio-counter {
+				color: rgba(255, 255, 255, 0.6);
+				font-size: 0.8rem;
+				text-align: right;
+				margin-top: -1.2rem;
+				margin-bottom: 1rem;
+			}
+
+			/* استایل برای select های موقعیت */
+			.location-select {
+				background: rgba(255, 255, 255, 0.1);
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				border-radius: 12px;
+				color: white;
+				padding: 0.8rem 1rem;
+				width: 100%;
+				margin-bottom: 1rem;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				appearance: none;
+				background-image: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' height='24' viewBox='0 0 24 24' width='24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+				background-repeat: no-repeat;
+				background-position: right 10px center;
+			}
+
+			.location-select:focus {
+				outline: none;
+				border-color: #4A6FFF;
+				box-shadow: 0 0 15px rgba(74, 111, 255, 0.3);
+			}
+
+			.location-select option {
+				background: #1a1f35;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="auth-container" id="authContainer">
+			<div class="auth-card">
+				<form>
+					<!-- پروفایل -->
+					<div class="profile-upload" onclick="document.getElementById('profile-input').click()">
+						<input type="file" id="profile-input" class="hidden" accept="image/*">
+						<div class="text-white text-center" id="profile-placeholder">
+							<svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+							</svg>
+							add picture
+						</div>
+					</div>
+
+					<input type="text" class="auth-input" placeholder="new username">
+					<input
+					type="password" class="auth-input" placeholder="new password">
+
+					<!-- تاریخ تولد -->
+					<input
+					type="date" class="auth-input date-picker" placeholder="date of birth">
+
+					<!-- جنسیت -->
+					<div class="gender-select">
+						<div class="gender-option" data-gender="male">male</div>
+						<div class="gender-option" data-gender="female">female</div>
+						<div class="gender-option" data-gender="trans">Diverse</div>
+					</div>
+
+					<select class="location-select" id="country">
+						<option value="" disabled selected>Select Your Country</option>
+						<option value="IR">Iran</option>
+						<option value="TR">Turkey</option>
+						<option value="US">United States</option>
+						<option value="GB">United Kingdom</option>
+						<option value="DE">Germany</option>
+						<option value="FR">France</option>
+						<option value="IT">Italy</option>
+						<option value="ES">Spain</option>
+						<option value="CA">Canada</option>
+						<option value="AU">Australia</option>
+						<option value="JP">Japan</option>
+						<option value="KR">South Korea</option>
+						<option value="CN">China</option>
+						<option value="RU">Russia</option>
+						<option value="AE">United Arab Emirates</option>
+						<option value="SA">Saudi Arabia</option>
+						<option value="QA">Qatar</option>
+						<option value="SE">Sweden</option>
+						<option value="NO">Norway</option>
+						<option value="FI">Finland</option>
+						<option value="OTHER">Other Countries</option>
+					</select>
+
+					<select class="location-select" id="city" disabled>
+						<option value="" disabled selected>Please Select a Country First</option>
+					</select>
+
+					<!--بیوگرافی-->
+					<textarea class="bio-field" placeholder="Write about yourself (maximum 500 characters)" maxlength="500"></textarea>
+					<div class="bio-counter">
+						<span id="charCount">0</span>/500</div>
+
+					<button type="submit" class="auth-button">Sign Up on HOWLING</button>
+				</form>
+			</div>
+		</div>
+
+		<script>
+			// ایجاد ستاره‌های پس‌زمینه
+			function createStars() {
+				const container = document.getElementById('authContainer');
+				for (let i = 0; i < 50; i++) {
+					const star = document.createElement('div');
+					star.className = 'stars';
+					star.style.left = `${
+						Math.random() * 100
+					}%`;
+					star.style.animationDelay = `${
+						Math.random() * 4
+					}s`;
+					container.appendChild(star);
+				}
+			}
+
+			// اجرای تابع ایجاد ستاره‌ها
+			createStars();
+
+			// انتخاب جنسیت
+			document.querySelectorAll('.gender-option').forEach(option => {
+				option.addEventListener('click', function () {
+					document.querySelectorAll('.gender-option').forEach(opt => opt.classList.remove('selected'));
+					this.classList.add('selected');
+				});
+			});
+
+			// پیش‌نمایش عکس پروفایل
+			document.getElementById('profile-input').addEventListener('change', function (e) {
+				if (e.target.files && e.target.files[0]) {
+					const reader = new FileReader();
+					reader.onload = function (e) {
+						const placeholder = document.getElementById('profile-placeholder');
+						placeholder.innerHTML = `<img src="${
+							e.target.result
+						}" class="w-full h-full object-cover">`;
+					}
+					reader.readAsDataURL(e.target.files[0]);
+				}
+			});
+
+			// آرایه شهرها برای هر کشور
+			const cities = {
+				"IR": [
+					"Tehran",
+					"Mashhad",
+					"Isfahan",
+					"Tabriz",
+					"Shiraz",
+					"Ahvaz",
+					"Karaj",
+					"Qom",
+					"Kermanshah",
+					"Rasht"
+				],
+				"TR": [
+					"Istanbul",
+					"Ankara",
+					"Izmir",
+					"Antalya",
+					"Bursa"
+				],
+				"US": [
+					"New York",
+					"Los Angeles",
+					"Chicago",
+					"Houston",
+					"Phoenix"
+				],
+				"GB": [
+					"London",
+					"Manchester",
+					"Birmingham",
+					"Leeds",
+					"Liverpool"
+				],
+				"DE": [
+					"Berlin",
+					"Hamburg",
+					"Munich",
+					"Cologne",
+					"Frankfurt"
+				],
+				// برای هر کشور میتوانید شهرهای بیشتری اضافه کنید
+			};
+
+			// شمارنده کاراکترهای بیوگرافی
+			document.querySelector('.bio-field').addEventListener('input', function () {
+				const charCount = this.value.length;
+				document.getElementById('charCount').textContent = charCount;
+			});
+
+			// تغییر شهرها بر اساس کشور انتخاب شده
+			document.getElementById('country').addEventListener('change', function () {
+				const citySelect = document.getElementById('city');
+				const selectedCountry = this.value;
+
+				citySelect.innerHTML = ''; // پاک کردن شهرهای قبلی
+
+				if (selectedCountry === 'OTHER') {
+					citySelect.innerHTML = '<option value="OTHER">other cities</option>';
+					citySelect.disabled = false;
+					return;
+				}
+
+				if (cities[selectedCountry]) {
+					citySelect.disabled = false;
+					citySelect.innerHTML = '<option value="" disabled selected>Select Your City</option>';
+
+					cities[selectedCountry].forEach(city => {
+						const option = document.createElement('option');
+						option.value = city;
+						option.textContent = city;
+						citySelect.appendChild(option);
+					});
+
+					// اضافه کردن گزینه سایر شهرها
+					const otherOption = document.createElement('option');
+					otherOption.value = 'OTHER';
+					otherOption.textContent = 'other cities';
+					citySelect.appendChild(otherOption);
+				}
+			});
+		</script>
+	</body>
+</html>

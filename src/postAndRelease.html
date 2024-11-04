@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Post/Release</title>
+    <link rel="stylesheet" href="./output.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+</head>
+<body class="bg-[#F8F9FB] dark:bg-[#0B0F1A] text-gray-800 dark:text-white min-h-screen">
+    <div class="max-w-2xl mx-auto p-4">
+        <!-- Toggle Buttons -->
+        <div class="flex gap-4 mb-8 bg-white dark:bg-[#1A1F35] p-2 rounded-xl shadow-sm">
+            <button id="postBtn" class="flex-1 py-3 rounded-lg bg-[#4A6FFF] text-white font-medium transition-all">
+                Post
+            </button>
+            <button id="releaseBtn" class="flex-1 py-3 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-[#2A2F45] transition-all">
+                Release
+            </button>
+        </div>
+
+        <!-- Post Form -->
+        <div id="postForm" class="space-y-6">
+            <div class="relative">
+                <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center cursor-pointer hover:border-[#4A6FFF] transition-all bg-white dark:bg-[#1A1F35] shadow-sm">
+                    <input type="file" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                    <div class="flex flex-col items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <p class="text-gray-500 dark:text-gray-400">Drop your image here or click to upload</p>
+                    </div>
+                </div>
+            </div>
+
+            <textarea 
+                placeholder="Write your post description..."
+                class="w-full h-40 bg-white dark:bg-[#1A1F35] rounded-xl p-4 text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#4A6FFF] resize-none shadow-sm"
+            ></textarea>
+        </div>
+
+        <!-- Release Form (Hidden by default) -->
+        <div id="releaseForm" class="hidden space-y-6">
+            <div class="relative">
+                <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center cursor-pointer hover:border-[#4A6FFF] transition-all bg-white dark:bg-[#1A1F35] shadow-sm">
+                    <input type="file" accept="audio/*,video/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                    <div class="flex flex-col items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                        </svg>
+                        <p class="text-gray-500 dark:text-gray-400">Drop your audio/video file here or click to upload</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center cursor-pointer hover:border-[#4A6FFF] transition-all bg-white dark:bg-[#1A1F35] shadow-sm">
+                    <input type="file" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                    <div class="flex flex-col items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <p class="text-gray-500 dark:text-gray-400">Drop your cover image here or click to upload</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button class="w-full bg-[#4A6FFF] text-white rounded-xl py-4 mt-8 font-medium hover:bg-[#3A5FEF] transition-all shadow-sm">
+            Publish
+        </button>
+    </div>
+
+    <script>
+        const postBtn = document.getElementById('postBtn');
+        const releaseBtn = document.getElementById('releaseBtn');
+        const postForm = document.getElementById('postForm');
+        const releaseForm = document.getElementById('releaseForm');
+
+        postBtn.addEventListener('click', () => {
+            postBtn.classList.add('bg-[#4A6FFF]', 'text-white');
+            postBtn.classList.remove('text-gray-500', 'dark:text-gray-400');
+            releaseBtn.classList.remove('bg-[#4A6FFF]', 'text-white');
+            releaseBtn.classList.add('text-gray-500', 'dark:text-gray-400');
+            postForm.classList.remove('hidden');
+            releaseForm.classList.add('hidden');
+        });
+
+        releaseBtn.addEventListener('click', () => {
+            releaseBtn.classList.add('bg-[#4A6FFF]', 'text-white');
+            releaseBtn.classList.remove('text-gray-500', 'dark:text-gray-400');
+            postBtn.classList.remove('bg-[#4A6FFF]', 'text-white');
+            postBtn.classList.add('text-gray-500', 'dark:text-gray-400');
+            releaseForm.classList.remove('hidden');
+            postForm.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>

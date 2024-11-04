@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./output.css">
+    <title>Howling | شبکه اجتماعی گرگ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #1a1f35, #2a3a6a);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* انیمیشن پس‌زمینه */
+        .stars {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: white;
+            box-shadow: 0 0 3px #fff;
+            border-radius: 50%;
+            animation: starAnimation 4s linear infinite;
+        }
+
+        @keyframes starAnimation {
+            0% { transform: translateY(0) scale(0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        }
+
+        /* کارت اصلی */
+        .auth-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* انیمیشن گرگ */
+        .wolf-container {
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1rem;
+            position: relative;
+            border-radius: 100%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* فرم‌ها */
+        .auth-input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .auth-input:focus {
+            outline: none;
+            border-color: #4A6FFF;
+            box-shadow: 0 0 15px rgba(74, 111, 255, 0.3);
+        }
+
+        .auth-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .auth-button {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #4A6FFF, #6B46C1);
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .auth-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .auth-switch {
+            margin-top: 1.5rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .auth-switch a {
+            color: #4A6FFF;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .auth-switch a:hover {
+            color: #6B46C1;
+        }
+
+        /* انیمیشن ورودی */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .auth-card {
+            animation: fadeIn 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container" id="authContainer">
+        <div class="auth-card">
+            <div class="flex justify-center items-center w-full">
+                <video class="wolf-container" src="../public/anime/Untitled Project.mp4" autoplay></video>
+            </div>
+            <form>
+                <input type="text" class="auth-input" placeholder="username">
+                <input type="password" class="auth-input" placeholder="password">
+                <button type="submit" class="auth-button">Login to HOWLING</button>
+            </form>
+            <div class="auth-switch">
+                Dont have an accont?<a href="#">sign up</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ایجاد ستاره‌های پس‌زمینه
+        function createStars() {
+            const container = document.getElementById('authContainer');
+            for(let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'stars';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 4}s`;
+                container.appendChild(star);
+            }
+        }
+
+        // اجرای تابع ایجاد ستاره‌ها
+        createStars();
+    </script>
+</body>
+</html>
